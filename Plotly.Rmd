@@ -1,0 +1,54 @@
+---
+title: "Plotly Presentation"
+author: "Ambu Vijayan"
+date: "`r format(Sys.Date(), '%B %d, %Y')`"
+output:
+  ioslides_presentation:
+    widescreen: true
+---
+
+```{r setup, include=FALSE}
+library(plotly)
+```
+
+
+# Slide 1: Introduction
+
+## Date of Creation
+
+The date this document was created is: `r format(Sys.Date(), '%B %d, %Y')`.
+
+# Slide 2: Plot 1
+
+## First Plot
+
+```{r plot1, echo=FALSE, warning=FALSE}
+# Generate some random data
+x <- rnorm(100)
+y <- rnorm(100)
+
+# Create a scatter plot with Plotly
+plot_ly(x = ~x, y = ~y, type = "scatter", mode = "markers") %>%
+  layout(title = "Scatter Plot 1", xaxis = list(title = "X"), yaxis = list(title = "Y"))
+```
+
+# Slide 3: Plot 2
+
+## Second Plot
+
+```{r plot2, echo=FALSE, warning=FALSE}
+# Generate some more random data
+z <- rnorm(100)
+
+# Create a 3D scatter plot with Plotly
+plot_ly(x = ~x, y = ~y, z = ~z, type = "scatter3d", mode = "markers") %>%
+  layout(title = "3D Scatter Plot", scene = list(xaxis = list(title = "X"), yaxis = list(title = "Y"), zaxis = list(title = "Z")))
+
+```
+
+# Slide 4: Conclusion
+
+## Thank You
+
+### Thank you for viewing my presentation!
+

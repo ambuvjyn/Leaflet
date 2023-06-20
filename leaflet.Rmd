@@ -1,0 +1,34 @@
+---
+title: "Leaflet"
+author: "Ambu Vijayan"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+This is my web page featuring a Diamond map created with Leaflet with popups of Latitude and Logitude.
+
+```{r leaflet, echo=FALSE, warning=FALSE}
+library(leaflet)
+
+my_map <- leaflet() %>% addTiles()
+
+for (b in -30:30) {
+  for (a in -30:30) {
+    if (abs(a) + abs(b) <= 30) {
+      lat <- 38.3451691 + b / 10000
+      lng <- -0.48149 + a / 10000
+      my_map <- addMarkers(my_map, lat = lat, lng = lng,
+                           popup = paste("Latitude:", lat, "<br>Longitude:", lng))
+    }
+  }
+}
+
+print(my_map)
+
+```
+
+

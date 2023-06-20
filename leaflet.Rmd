@@ -16,18 +16,17 @@ library(leaflet)
 
 my_map <- leaflet() %>% addTiles()
 
-for (b in -30:30) {
-  for (a in -30:30) {
-    if (abs(a) + abs(b) <= 30) {
-      lat <- 38.3451691 + b / 10000
-      lng <- -0.48149 + a / 10000
-      my_map <- addMarkers(my_map, lat = lat, lng = lng,
-                           popup = paste("Latitude:", lat, "<br>Longitude:", lng))
-    }
-  }
+coords <- expand.grid(a = -30:30, b = -30:30)
+coords <- coords[abs(coords$a) + abs(coords$b) <= 30, ]
+
+for (i in seq_len(nrow(coords))) {
+  lat <- 38.3451691 + coords$b[i] / 10000
+  lng <- -0.48149 + coords$a[i] / 10000
+  my_map <- addMarkers(my_map, lat = lat, lng = lng,
+                       popup = paste("Latitude:", lat, "<br>Longitude:", lng))
 }
 
-print(my_map)
+my_map
 
 ```
 
